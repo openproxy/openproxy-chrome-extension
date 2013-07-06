@@ -1,0 +1,23 @@
+{
+    "manifest_version": 2,
+    "name": "Open Proxy Chrome Extension",
+    "description": "World of open proxies on Google Maps",
+    "version": "0.1.0",
+    "permissions": [
+        "background",
+        "proxy",
+        "tabs",
+        "http://*/*",
+        "https://*/*"
+    ],
+    "page_action": {
+        "default_title": "Reset proxy settings",
+        "default_icon": {
+            "19": "images/icon-19x19.png",
+            "38": "images/icon-38x38.png"
+        }
+    },
+    "background": {
+        "scripts": ["scripts/background.js"]
+    }
+}

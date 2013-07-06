@@ -1,0 +1,26 @@
+{
+    "name": "openproxy-chrome-extension",
+    "description": "Open Proxy Chrome Extension",
+    "version": "0.1.0",
+    "author": "Stanley Shyiko <stanley.shyiko@gmail.com>",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/openproxy/openproxy-chrome-extension.git"
+    },
+    "keywords": [
+        "openproxy", "chrome", "extension"
+    ],
+    "private": true,
+    "devDependencies": {
+        "grunt": "0.4.0",
+        "grunt-contrib-clean": "0.4.0",
+        "grunt-contrib-coffee": "0.4.0",
+        "grunt-regarde": "0.1.1",
+        "grunt-contrib-copy": "0.4.0",
+        "grunt-crx": "0.2.3"
+    },
+    "engines": {
+        "node": ">=0.8.0"
+    }
+}
