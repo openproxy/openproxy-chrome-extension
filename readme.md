@@ -4,7 +4,7 @@ Chrome Extension for [Open Proxy](http://openproxy.github.io)
 
 ## Installation
 
-1. Download [latest CRX](https://github.com/openproxy/openproxy-chrome-extension/raw/master/target/openproxy-chrome-extension.crx)
+1. Download [latest CRX](https://github.com/openproxy/openproxy-chrome-extension/releases)
 2. Open "chrome://extensions" (in Chrome)
 3. Drug and drop CRX package onto the Extensions page
 
