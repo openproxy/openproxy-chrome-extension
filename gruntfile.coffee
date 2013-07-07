@@ -31,8 +31,8 @@ module.exports = (grunt) ->
         crx:
             target:
                 src: '<%= project.transient %>'
-                dest: '<%= project.target %>'
-                privateKey: '~/.ssh/private_key.pem'
+                dest: '<%= project.target %>/openproxy-chrome-extension.crx'
+                privateKey: '~/.ssh/openproxy-chrome-extension.pem'
 
     # load all grunt tasks defined in package.json
     grunt.loadNpmTasks task for own task of grunt.config.get('pkg').
