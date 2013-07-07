@@ -16,9 +16,9 @@ Chrome Extension for [Open Proxy](http://openproxy.github.io)
     cd openproxy-chrome-extension
     npm install # this will install all required dependencies
 
-    grunt # for "live" unpacked version
-    grunt unpacked # for unpacked version
-    grunt pack # for CRX
+    grunt # for a "live" unpacked version
+    grunt unpacked # for the unpacked version
+    grunt pack # for the CRX
 
 ## License
 
