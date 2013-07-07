@@ -6,7 +6,7 @@
 
 # hooking extension into openproxy web application
 chrome.tabs.onUpdated.addListener (tabId, changeInfo, tab) ->
-    if changeInfo.status is 'complete' && tab.url.substr(tab.url.indexOf('://') + 3, 9) is 'openproxy'
+    if changeInfo.status is 'complete' && tab.url.substr(tab.url.indexOf('://') + 3, 9) is 'localhost'
         chrome.pageAction.show tabId
         chrome.tabs.executeScript null, file: 'scripts/content.js'
 
@@ -26,8 +26,17 @@ chrome.runtime.onConnect.addListener (port) ->
                             port: proxy.port
                             scheme: proxy.scheme || "http" # or "https", "socks4", "socks5"
 
+changePageActionIcon = (tab, suffix = '') ->
+    chrome.pageAction.setIcon
+        tabId: tab.id
+        path:
+            19: "images/icon-19x19#{suffix}.png"
+            38: "images/icon-38x38#{suffix}.png"
+
 # binding page action to "reset proxy settings"
-chrome.pageAction.onClicked.addListener ->
+chrome.pageAction.onClicked.addListener (tab) ->
+    changePageActionIcon tab, '-alpha'
+    setTimeout (-> changePageActionIcon tab), 500
     # basically OP_PROXY_OFF
     chrome.proxy.settings.set
         scope: 'regular'
