@@ -14,7 +14,7 @@ chrome.tabs.onUpdated.addListener (tabId, changeInfo, tab) ->
 chrome.runtime.onConnect.addListener (port) ->
     port.onMessage.addListener (event) ->
         if event.type is 'OP_PROXY_ON'
-            proxy = event.body;
+            proxy = event.body
             # https://developer.chrome.com/extensions/proxy.html
             chrome.proxy.settings.set
                 scope: 'regular'

@@ -15,10 +15,19 @@ module.exports = (grunt) ->
                 src: ['*.coffee']
                 dest: '<%= project.transient %>/scripts'
                 ext: '.js'
+        coffeelint:
+            options:
+                indentation:
+                    value: 4
+                max_line_length:
+                    value: 120
+                line_endings:
+                    value: 'unix'
+            source: ['gruntfile.coffee', '<%= project.source %>/scripts/*.coffee']
         regarde:
             coffee:
                 files: '<%= project.source %>/scripts/*.coffee'
-                tasks: ['coffee:compile']
+                tasks: ['coffeelint', 'coffee:compile']
             resources:
                 files: ['<%= project.source %>/*', '<%= project.source %>/images/*']
                 tasks: ['copy']
@@ -38,6 +47,6 @@ module.exports = (grunt) ->
     grunt.loadNpmTasks task for own task of grunt.config.get('pkg').
         devDependencies when task.indexOf('grunt-') is 0
 
-    grunt.registerTask 'unpacked', ['clean', 'coffee:compile', 'copy']
+    grunt.registerTask 'unpacked', ['clean', 'coffeelint', 'coffee:compile', 'copy']
     grunt.registerTask 'default', ['unpacked', 'regarde']
     grunt.registerTask 'pack', ['unpacked', 'crx']
