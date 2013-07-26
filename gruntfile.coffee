@@ -40,7 +40,7 @@ module.exports = (grunt) ->
         crx:
             target:
                 src: '<%= project.transient %>'
-                dest: '<%= project.target %>'
+                dest: '<%= project.target %>/<%= pkg.name %>-<%= pkg.version %>.crx'
                 privateKey: '~/.ssh/openproxy-chrome-extension.pem'
 
     # load all grunt tasks defined in package.json
