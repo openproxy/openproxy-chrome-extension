@@ -2,7 +2,7 @@
     "manifest_version": 2,
     "name": "Open Proxy Chrome Extension",
     "description": "World of open proxies on Google Maps",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "permissions": [
         "background",
         "proxy",
@@ -18,6 +18,6 @@
         }
     },
     "background": {
-        "scripts": ["scripts/background.js"]
+        "scripts": ["scripts/background.js", "scripts/pageaction.js"]
     }
 }

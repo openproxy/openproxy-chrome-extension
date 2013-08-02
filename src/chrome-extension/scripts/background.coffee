@@ -10,37 +10,48 @@ chrome.tabs.onUpdated.addListener (tabId, changeInfo, tab) ->
         chrome.pageAction.show tabId
         chrome.tabs.executeScript null, file: 'scripts/content.js'
 
-# registering proxy activation by OP_PROXY_ON event
+# @settings {host, port, scheme (default - 'http'), whitelist (optional), blacklist (optional)}
+configureProxy = (settings) ->
+    settings.scheme ||= 'http' # or "https", "socks4", "socks5"
+    if settings.whitelist
+        proxyType = if settings.scheme.indexOf('http') is 0 then 'PROXY' else 'SOCKS'
+        mode: 'pac_script',
+        pacScript:
+            data:
+                """
+                function FindProxyForURL(url, host) {
+                    var whitelist = #{JSON.stringify(settings.whitelist)};
+                    for (i = 0, e = whitelist.length; i < e; i++) {
+                        if (shExpMatch(host, whitelist[i])) {
+                            return '#{proxyType} #{settings.host}:#{settings.port}';
+                        }
+                    }
+                    return 'DIRECT';
+                }
+                """ # use alert() + chrome://net-internals/#events to debug
+    else
+        mode: 'fixed_servers'
+        rules:
+            singleProxy:
+                host: settings.host, port: settings.port, scheme: settings.scheme
+            bypassList: settings.blacklist || []
+
+# @event {type, body}
+eventHandler = (event) ->
+    switch event.type
+        when 'OP_PROXY_ON'
+            chrome.proxy.settings.set
+                scope: 'regular', value: configureProxy(event.body)
+        when 'OP_PROXY_OFF'
+            chrome.proxy.settings.set
+                scope: 'regular', value: mode: 'direct'
+        else return false
+    return true
+
+# registering listener for OP_PROXY_* events
 chrome.runtime.onConnect.addListener (port) ->
     port.onMessage.addListener (event) ->
-        if event.type is 'OP_PROXY_ON'
-            proxy = event.body
-            # https://developer.chrome.com/extensions/proxy.html
-            chrome.proxy.settings.set
-                scope: 'regular'
-                value:
-                    mode: 'fixed_servers'
-                    rules:
-                        singleProxy:
-                            host: proxy.host
-                            port: proxy.port
-                            scheme: proxy.scheme || "http" # or "https", "socks4", "socks5"
+        if (eventHandler(event))
+            port.postMessage type: 'OP_COMPLETED', body: event
 
-changePageActionIcon = (tab, suffix = '') ->
-    chrome.pageAction.setIcon
-        tabId: tab.id
-        path:
-            19: "images/icon-19x19#{suffix}.png"
-            38: "images/icon-38x38#{suffix}.png"
-
-# binding page action to "reset proxy settings"
-chrome.pageAction.onClicked.addListener (tab) ->
-    changePageActionIcon tab, '-alpha'
-    setTimeout (-> changePageActionIcon tab), 500
-    # basically OP_PROXY_OFF
-    chrome.proxy.settings.set
-        scope: 'regular'
-        value:
-            mode: 'direct'
-
-
+chrome.runtime.onMessage.addListener eventHandler
