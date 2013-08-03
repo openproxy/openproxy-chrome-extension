@@ -5,7 +5,7 @@
 ###
 
 # informing web page about presence of extension
-window.postMessage type: 'OP_CHROME_EXTENSION_INITIALIZED', '*'
+window.postMessage type: 'OP_CHROME_EXTENSION_INITIALIZED', body: {version: chrome.runtime.getManifest().version}, '*'
 
 # routing events form web page to background.js
 background = chrome.runtime.connect()
