@@ -5,10 +5,8 @@
     "version": "0.2.0",
     "permissions": [
         "background",
-        "proxy",
         "tabs",
-        "http://*/*",
-        "https://*/*"
+        "proxy"
     ],
     "page_action": {
         "default_title": "Reset proxy settings",
