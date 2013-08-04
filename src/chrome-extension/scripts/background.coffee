@@ -6,7 +6,7 @@
 
 # hooking extension into openproxy web application
 chrome.tabs.onUpdated.addListener (tabId, changeInfo, tab) ->
-    if changeInfo.status is 'complete' && tab.url.substr(tab.url.indexOf('://') + 3, 9) is 'openproxy'
+    if changeInfo.status is 'complete' && tab.url.indexOf('http://openproxy.github.io/') is 0
         chrome.pageAction.show tabId
         chrome.tabs.executeScript null, file: 'scripts/content.js'
 

@@ -6,7 +6,8 @@
     "permissions": [
         "background",
         "tabs",
-        "proxy"
+        "proxy",
+        "http://openproxy.github.io/*"
     ],
     "page_action": {
         "default_title": "Reset proxy settings",
