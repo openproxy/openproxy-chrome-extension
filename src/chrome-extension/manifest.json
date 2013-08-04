@@ -3,6 +3,9 @@
     "name": "Open Proxy Chrome Extension",
     "description": "World of open proxies on Google Maps",
     "version": "0.2.0",
+    "icons": {
+        "48": "images/icon-48x48.png"
+    },
     "permissions": [
         "background",
         "tabs",
