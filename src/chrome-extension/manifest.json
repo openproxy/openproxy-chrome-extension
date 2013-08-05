@@ -1,5 +1,6 @@
 {
     "manifest_version": 2,
+    "minimum_chrome_version": "22",
     "name": "Open Proxy Chrome Extension",
     "description": "World of open proxies on Google Maps",
     "version": "0.2.0",
