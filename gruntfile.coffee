@@ -24,7 +24,7 @@ module.exports = (grunt) ->
                 line_endings:
                     value: 'unix'
             source: ['gruntfile.coffee', '<%= project.source %>/scripts/*.coffee']
-        regarde:
+        watch:
             coffee:
                 files: '<%= project.source %>/scripts/*.coffee'
                 tasks: ['coffeelint', 'coffee:compile']
@@ -48,5 +48,5 @@ module.exports = (grunt) ->
         devDependencies when task.indexOf('grunt-') is 0
 
     grunt.registerTask 'unpacked', ['clean', 'coffeelint', 'coffee:compile', 'copy']
-    grunt.registerTask 'default', ['unpacked', 'regarde']
+    grunt.registerTask 'default', ['unpacked', 'watch']
     grunt.registerTask 'pack', ['unpacked', 'crx']
