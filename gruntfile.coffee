@@ -23,6 +23,8 @@ module.exports = (grunt) ->
                     value: 120
                 line_endings:
                     value: 'unix'
+                no_trailing_semicolons:
+                    level: 'ignore' # ignoring until clutchski/coffeelint#147 is available in upstream
             source: ['gruntfile.coffee', '<%= project.source %>/scripts/*.coffee']
         watch:
             coffee:
