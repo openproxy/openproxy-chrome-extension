@@ -37,6 +37,10 @@ module.exports = (grunt) ->
                 cwd: '<%= project.source %>'
                 src: ['**', '!**/*.coffee']
                 dest: '<%= project.transient %>'
+        bump:
+            options:
+                commitMessage: 'v%VERSION%'
+                tagMessage: 'v%VERSION%'
         crx:
             target:
                 src: '<%= project.transient %>'
