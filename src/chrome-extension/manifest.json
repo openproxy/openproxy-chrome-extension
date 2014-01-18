@@ -17,6 +17,7 @@
     "content_scripts": [
         {
             "matches": ["http://openproxy.github.io/*"],
+            "run_at": "document_end",
             "js": ["scripts/content.js"]
         }
     ]
