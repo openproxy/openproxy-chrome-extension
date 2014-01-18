@@ -39,6 +39,7 @@ module.exports = (grunt) ->
                 dest: '<%= project.transient %>'
         bump:
             options:
+                files: ['package.json', '<%= project.source %>/manifest.json'],
                 commitMessage: 'v%VERSION%'
                 tagMessage: 'v%VERSION%'
         crx:
