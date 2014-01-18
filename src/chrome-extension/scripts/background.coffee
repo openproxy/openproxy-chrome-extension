@@ -4,12 +4,6 @@
     https://github.com/openproxy/openproxy-chrome-extension
 ###
 
-# hooking extension into openproxy web application
-chrome.tabs.onUpdated.addListener (tabId, changeInfo, tab) ->
-    if changeInfo.status is 'complete' && tab.url.indexOf('http://openproxy.github.io/') is 0
-        chrome.pageAction.show tabId
-        chrome.tabs.executeScript null, file: 'scripts/content.js'
-
 # @settings {host, port, scheme (default - 'http'), whitelist (optional), blacklist (optional)}
 configureProxy = (settings) ->
     settings.scheme ||= 'http' # or "https", "socks4", "socks5"

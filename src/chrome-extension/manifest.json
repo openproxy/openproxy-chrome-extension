@@ -9,18 +9,15 @@
     },
     "permissions": [
         "background",
-        "tabs",
-        "proxy",
-        "http://openproxy.github.io/*"
+        "proxy"
     ],
-    "page_action": {
-        "default_title": "Reset proxy settings",
-        "default_icon": {
-            "19": "images/icon-19x19.png",
-            "38": "images/icon-38x38.png"
-        }
-    },
     "background": {
-        "scripts": ["scripts/background.js", "scripts/pageaction.js"]
-    }
+        "scripts": ["scripts/background.js"]
+    },
+    "content_scripts": [
+        {
+            "matches": ["http://openproxy.github.io/*"],
+            "js": ["scripts/content.js"]
+        }
+    ]
 }
