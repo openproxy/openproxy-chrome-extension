@@ -1,5 +1,5 @@
 {
-    "name": "Open Proxy Chrome Extension",
+    "name": "OpenProxy Chrome Extension",
     "description": "World of open proxies on Google Maps",
     "version": "0.2.0",
     "manifest_version": 2,

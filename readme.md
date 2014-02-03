@@ -1,8 +1,8 @@
 # openproxy-chrome-extension
 
-Chrome Extension for [Open Proxy](http://openproxy.github.io).
+Chrome Extension for [OpenProxy](http://openproxy.github.io).
 
-It allows to switch proxies directly through the Open Proxy web page.
+It allows to switch proxies directly through the OpenProxy web page.
 
 ## Installation
 

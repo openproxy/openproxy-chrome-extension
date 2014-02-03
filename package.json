@@ -1,6 +1,6 @@
 {
     "name": "openproxy-chrome-extension",
-    "description": "Open Proxy Chrome Extension",
+    "description": "OpenProxy Chrome Extension",
     "version": "0.2.0",
     "author": "Stanley Shyiko <stanley.shyiko@gmail.com>",
     "license": "MIT",
