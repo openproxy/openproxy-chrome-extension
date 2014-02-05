@@ -42,6 +42,7 @@ module.exports = (grunt) ->
                 files: ['package.json', '<%= project.source %>/manifest.json'],
                 commitMessage: 'v%VERSION%'
                 tagMessage: 'v%VERSION%'
+                pushTo: 'origin'
         crx:
             target:
                 src: '<%= project.transient %>'
