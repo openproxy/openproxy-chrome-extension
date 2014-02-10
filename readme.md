@@ -6,6 +6,8 @@ It allows to switch proxies directly through the OpenProxy web page.
 
 ## Installation
 
+> Follow the same instructions if you need to update an extension.
+
 1. Download [latest CRX](https://github.com/openproxy/openproxy-chrome-extension/releases)
 2. Open "chrome://extensions" (in Chrome)
 3. Drug and drop CRX package onto the Extensions page
