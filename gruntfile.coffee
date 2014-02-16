@@ -40,8 +40,9 @@ module.exports = (grunt) ->
         bump:
             options:
                 files: ['package.json', '<%= project.source %>/manifest.json'],
-                commitMessage: 'v%VERSION%'
-                tagMessage: 'v%VERSION%'
+                commitMessage: '%VERSION%'
+                tagName: '%VERSION%'
+                tagMessage: '%VERSION%'
                 pushTo: 'origin'
         crx:
             target:
