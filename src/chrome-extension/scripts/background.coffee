@@ -9,14 +9,22 @@ configureProxy = (settings) ->
     settings.scheme ||= 'http' # or "https", "socks4", "socks5"
     if settings.whitelist
         proxyType = if settings.scheme.indexOf('http') is 0 then 'PROXY' else 'SOCKS'
+        settings.blacklist ||= null
         mode: 'pac_script',
         pacScript:
             data:
                 """
                 function FindProxyForURL(url, host) {
-                    var whitelist = #{JSON.stringify(settings.whitelist)};
-                    for (i = 0, e = whitelist.length; i < e; i++) {
+                    var whitelist = #{JSON.stringify(settings.whitelist)},
+                        blacklist = #{JSON.stringify(settings.blacklist)};
+                    nextWhitelistPattern:
+                    for (var i = 0, ie = whitelist.length; i < ie; i++) {
                         if (shExpMatch(host, whitelist[i])) {
+                            for (var j = 0, je = blacklist.length; j < je; j++) {
+                                if (shExpMatch(host, blacklist[j])) {
+                                    continue nextWhitelistPattern;
+                                }
+                            }
                             return '#{proxyType} #{settings.host}:#{settings.port}';
                         }
                     }
